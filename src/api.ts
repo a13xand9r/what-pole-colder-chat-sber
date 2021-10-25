@@ -10,7 +10,7 @@ export const weatherCache = {
 export const getNorthPoleWeather = async () => {
   try {
     const { data } = await axios.get<Weather>(`https://api.openweathermap.org/data/2.5/weather?lat=90&lon=0&&appid=${process.env.WEATHER_API_KEY}&units=metric&lang=ru`)
-    console.log('NORTH-----REQUEST-----DONE', data)
+    console.log('NORTH-----REQUEST-----DONE')
     return data
   } catch (error) {
     console.log('WEATHER----------ERROR', error)
@@ -21,6 +21,7 @@ export const getNorthPoleWeather = async () => {
 export const getSouthPoleWeather = async () => {
   try {
     const { data } = await axios.get<Weather>(`https://api.openweathermap.org/data/2.5/weather?lat=-90&lon=0&&appid=${process.env.WEATHER_API_KEY}&units=metric&lang=ru`)
+    console.log('SOUTH-----REQUEST-----DONE')
     return data
   } catch (error) {
     console.log('WEATHER----------ERROR', error)

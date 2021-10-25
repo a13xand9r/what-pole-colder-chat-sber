@@ -7,8 +7,14 @@ let coldPole: Weather & {pole: 'Южном' | 'Северном'}
 let warmPole: Weather & {pole: 'Южном' | 'Северном'}
 
 export const runAppHandler: SaluteHandler = ({ req, res }, dispatch) => {
-    if (weatherCache.northPoleWeather && weatherCache.southPoleWeather)
+    if (weatherCache.northPoleWeather && weatherCache.southPoleWeather){
         dispatch && dispatch(['WhatIsColder'])
+    } else {
+        const keyset = req.i18n(dictionary)
+        res.setPronounceText(keyset('404'))
+        res.appendBubble(keyset('404'))
+        res.setAutoListening(true)
+    }
 }
 
 export const noMatchHandler: SaluteHandler = async ({ req, res }) => {
