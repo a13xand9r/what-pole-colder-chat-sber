@@ -78,9 +78,11 @@ const poleWeatherInfo = (req: SaluteRequest, res: SaluteResponse, pole: 'Южн�
 }
 
 export const northPoleHandler: SaluteHandler = async ({ req, res }) => {
+    console.log('north temp',weatherCache.northPoleWeather?.main.temp)
     poleWeatherInfo(req, res, 'Северном')
 }
 export const southPoleHandler: SaluteHandler = async ({ req, res }) => {
+    console.log('south temp',weatherCache.southPoleWeather?.main.temp)
     poleWeatherInfo(req, res, 'Южном')
 }
 
