@@ -5,8 +5,12 @@ import { Weather } from './types'
 
 let coldPole: Weather & {pole: 'Южном' | 'Северном'}
 let warmPole: Weather & {pole: 'Южном' | 'Северном'}
+let timerId: NodeJS.Timer
 
 export const runAppHandler: SaluteHandler = ({ req, res }, dispatch) => {
+    if (!timerId){
+        requestWeatherPeriodically(600000)
+    }
     if (weatherCache.northPoleWeather && weatherCache.southPoleWeather){
         dispatch && dispatch(['WhatIsColder'])
     } else {

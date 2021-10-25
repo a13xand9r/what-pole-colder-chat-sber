@@ -42,7 +42,7 @@ export const requestWeather = async () => {
 }
 export const requestWeatherPeriodically = (time: number = 1200000) => {
   console.log('periodically time', time)
-  setInterval(() => {
+  const timerId = setInterval(() => {
     const request = async () => {
       const [northPoleWeather, southPoleWeather] = await Promise.all([
         getNorthPoleWeather(),
@@ -58,4 +58,6 @@ export const requestWeatherPeriodically = (time: number = 1200000) => {
 
     console.log('Periodically weather request')
   }, time)
+
+  return timerId
 }
