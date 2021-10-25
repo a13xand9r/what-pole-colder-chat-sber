@@ -26,6 +26,8 @@ const startServer = async () => {
     requestWeather()
     res.status(200).send('Какой полюс холоднее чатап')
   })
+
+  console.log('SERVER START')
 }
 
 startServer()
