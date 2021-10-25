@@ -32,7 +32,7 @@ export const requestWeather = async () => {
         getNorthPoleWeather(),
         getSouthPoleWeather()
     ]) as Weather[]
-
+    console.log('start request')
     weatherCache.northPoleWeather = northPoleWeather
     weatherCache.southPoleWeather = southPoleWeather
 }
