@@ -13,14 +13,12 @@ app.use(webHookRout)
 
 app.listen(PORT, () => {
   console.log('server started on port ', PORT)
-  setInterval(() => {
-    console.log('Periodically weather request')
-}, 2000)
+  requestWeather()
 //   requestWeather()
 //   requestWeatherPeriodically(60000)
 })
 
 app.get('/', (_, res) => {
-    // requestWeatherPeriodically(2000)
+    requestWeather()
     res.status(200).send('Какой полюс холоднее чатап')
 })
