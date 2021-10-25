@@ -38,16 +38,16 @@ export const requestWeather = async () => {
 }
 export const requestWeatherPeriodically = async (time: number = 1200000) => {
     console.log('periodically time', time)
-    setInterval(async () => {
-        const [northPoleWeather, southPoleWeather] = await Promise.all([
-            getNorthPoleWeather(),
-            getSouthPoleWeather()
-        ]) as Weather[]
+    setInterval(() => {
+        // const [northPoleWeather, southPoleWeather] = await Promise.all([
+        //     getNorthPoleWeather(),
+        //     getSouthPoleWeather()
+        // ]) as Weather[]
 
-        if (northPoleWeather && southPoleWeather){
-            weatherCache.northPoleWeather = northPoleWeather
-            weatherCache.southPoleWeather = southPoleWeather
-        }
+        // if (northPoleWeather && southPoleWeather){
+        //     weatherCache.northPoleWeather = northPoleWeather
+        //     weatherCache.southPoleWeather = southPoleWeather
+        // }
 
         console.log('Periodically weather request')
     }, time)
