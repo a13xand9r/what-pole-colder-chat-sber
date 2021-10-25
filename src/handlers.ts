@@ -1,6 +1,6 @@
 import { SaluteHandler, SaluteRequest, SaluteResponse } from '@salutejs/scenario'
 import * as dictionary from './system.i18n'
-import { requestWeather, requestWeatherPeriodically, weatherCache } from './api'
+import { getNorthPoleWeather, getSouthPoleWeather, requestWeather, requestWeatherPeriodically, weatherCache } from './api'
 import { Weather } from './types'
 
 let coldPole: Weather & {pole: 'Южном' | 'Северном'}
@@ -31,6 +31,15 @@ export const whatIsColderHandler: SaluteHandler = async ({ req, res }) => {
 
     if (weatherCache.northPoleWeather && weatherCache.southPoleWeather){
         coldPole = weatherCache.northPoleWeather.main.temp < weatherCache.southPoleWeather.main.temp ? {...weatherCache.northPoleWeather, pole: 'Северном'} : {...weatherCache.southPoleWeather, pole: 'Южном'}
+        warmPole = weatherCache.northPoleWeather.main.temp < weatherCache.southPoleWeather.main.temp ? {...weatherCache.southPoleWeather, pole: 'Южном'} : {...weatherCache.northPoleWeather, pole: 'Северном'}
+    } else {
+        await Promise.all([
+            getNorthPoleWeather(),
+            getSouthPoleWeather()
+        ])
+        //@ts-ignore
+        coldPole = weatherCache.northPoleWeather.main.temp < weatherCache.southPoleWeather.main.temp ? {...weatherCache.northPoleWeather, pole: 'Северном'} : {...weatherCache.southPoleWeather, pole: 'Южном'}
+        //@ts-ignores
         warmPole = weatherCache.northPoleWeather.main.temp < weatherCache.southPoleWeather.main.temp ? {...weatherCache.southPoleWeather, pole: 'Южном'} : {...weatherCache.northPoleWeather, pole: 'Северном'}
     }
 
