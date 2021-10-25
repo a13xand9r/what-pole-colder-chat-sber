@@ -35,8 +35,10 @@ export const requestWeather = async () => {
     getSouthPoleWeather()
   ]) as Weather[]
   console.log('start request')
-  weatherCache.northPoleWeather = northPoleWeather
-  weatherCache.southPoleWeather = southPoleWeather
+  if (northPoleWeather && southPoleWeather){
+    weatherCache.northPoleWeather = northPoleWeather
+    weatherCache.southPoleWeather = southPoleWeather
+  }
 }
 export const requestWeatherPeriodically = (time: number = 1200000) => {
   console.log('periodically time', time)
