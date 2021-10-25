@@ -11,13 +11,22 @@ app.use(express.json())
 app.use(cors())
 app.use(webHookRout)
 
-app.listen(PORT, async() => {
-  console.log('server started on port ', PORT)
+
+const startServer = async () => {
   await requestWeather()
   await requestWeatherPeriodically(180000)
-})
 
-app.get('/', (_, res) => {
+  app.listen(PORT, () => {
+    console.log('server started on port ', PORT)
+    // await requestWeather()
+    // await requestWeatherPeriodically(180000)
+  })
+
+  app.get('/', (_, res) => {
     requestWeather()
     res.status(200).send('Какой полюс холоднее чатап')
-})
+  })
+}
+
+startServer()
+

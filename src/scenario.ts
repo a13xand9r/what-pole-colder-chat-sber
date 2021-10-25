@@ -52,7 +52,7 @@ export const handleNlpRequest = async (request: NLPRequest): Promise<NLPResponse
     const res = createSaluteResponse(request)
     const sessionId = request.uuid.userId
     const session = await storage.resolve(sessionId)
-    console.log(req.inference?.variants)
+
     await scenarioWalker({ req, res, session })
 
     await storage.save({ id: sessionId, session })
