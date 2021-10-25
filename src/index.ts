@@ -13,24 +13,14 @@ app.use(webHookRout)
 
 app.listen(PORT, () => {
   console.log('server started on port ', PORT)
+  setInterval(() => {
+    console.log('Periodically weather request')
+}, 2000)
 //   requestWeather()
 //   requestWeatherPeriodically(60000)
 })
 
 app.get('/', (_, res) => {
     // requestWeatherPeriodically(2000)
-    setInterval(() => {
-        // const [northPoleWeather, southPoleWeather] = await Promise.all([
-        //     getNorthPoleWeather(),
-        //     getSouthPoleWeather()
-        // ]) as Weather[]
-
-        // if (northPoleWeather && southPoleWeather){
-        //     weatherCache.northPoleWeather = northPoleWeather
-        //     weatherCache.southPoleWeather = southPoleWeather
-        // }
-
-        console.log('Periodically weather request')
-    }, 2000)
     res.status(200).send('Какой полюс холоднее чатап')
 })
