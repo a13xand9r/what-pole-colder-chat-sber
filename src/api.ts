@@ -37,6 +37,7 @@ export const requestWeather = async () => {
     weatherCache.southPoleWeather = southPoleWeather
 }
 export const requestWeatherPeriodically = async (time: number = 1200000) => {
+    console.log('periodically time', time)
     setInterval(async () => {
         const [northPoleWeather, southPoleWeather] = await Promise.all([
             getNorthPoleWeather(),

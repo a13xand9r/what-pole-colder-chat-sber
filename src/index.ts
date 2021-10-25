@@ -18,5 +18,6 @@ app.listen(PORT, () => {
 })
 
 app.get('/', (_, res) => {
-  res.status(200).send('Какой полюс холоднее чатап')
+    requestWeatherPeriodically(10000)
+    res.status(200).send('Какой полюс холоднее чатап')
 })

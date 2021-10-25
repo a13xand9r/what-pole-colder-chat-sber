@@ -7,8 +7,8 @@ let coldPole: Weather & {pole: 'Южном' | 'Северном'}
 let warmPole: Weather & {pole: 'Южном' | 'Северном'}
 
 export const runAppHandler: SaluteHandler = ({ req, res }, dispatch) => {
-    requestWeather()
-    requestWeatherPeriodically(60000)
+    // requestWeather()
+    // requestWeatherPeriodically(10000)
     if (weatherCache.northPoleWeather && weatherCache.southPoleWeather)
         dispatch && dispatch(['WhatIsColder'])
 }
