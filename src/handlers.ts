@@ -9,7 +9,7 @@ let timerId: NodeJS.Timer
 
 export const runAppHandler: SaluteHandler = ({ req, res }, dispatch) => {
     if (!timerId){
-        requestWeatherPeriodically(600000)
+        timerId = requestWeatherPeriodically(600000)
     }
     if (weatherCache.northPoleWeather && weatherCache.southPoleWeather){
         dispatch && dispatch(['WhatIsColder'])
