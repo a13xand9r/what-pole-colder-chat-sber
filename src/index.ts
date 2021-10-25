@@ -2,7 +2,6 @@ import express from 'express'
 import cors from 'cors'
 import { webHookRout } from './routes/webHookRout'
 import { requestWeather, requestWeatherPeriodically } from './api'
-import { Weather } from './types'
 require('dotenv').config()
 
 const PORT = process.env.PORT ?? 5000

@@ -14,11 +14,11 @@ import {
 import { SaluteMemoryStorage } from '@salutejs/storage-adapter-memory'
 import { noMatchHandler, northPoleHandler, runAppHandler, southPoleHandler, whatIsColderHandler } from './handlers'
 import model from './intents.json'
-// require('dotenv').config()
+require('dotenv').config()
 
 const storage = new SaluteMemoryStorage()
 const intents = createIntents(model.intents)
-const { match, intent } = createMatchers<SaluteRequest, typeof intents>()
+const { intent } = createMatchers<SaluteRequest, typeof intents>()
 
 const userScenario = createUserScenario({
     WhatIsColder: {
@@ -41,7 +41,7 @@ const systemScenario = createSystemScenario({
 })
 
 const scenarioWalker = createScenarioWalker({
-    recognizer: new SmartAppBrainRecognizer('ff9e15b8-4221-4ccb-9d0c-d8b59aa02a8d'),
+    recognizer: new SmartAppBrainRecognizer(process.env.SMARTAPP_BRAIN_TOKEN),
     intents,
     systemScenario,
     userScenario
