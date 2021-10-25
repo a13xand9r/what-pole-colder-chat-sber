@@ -1,13 +1,16 @@
 import { SaluteHandler, SaluteRequest, SaluteResponse } from '@salutejs/scenario'
 import * as dictionary from './system.i18n'
-import { weatherCache } from './api'
+import { requestWeather, requestWeatherPeriodically, weatherCache } from './api'
 import { Weather } from './types'
 
 let coldPole: Weather & {pole: 'Южном' | 'Северном'}
 let warmPole: Weather & {pole: 'Южном' | 'Северном'}
 
 export const runAppHandler: SaluteHandler = ({ req, res }, dispatch) => {
-    dispatch && dispatch(['WhatIsColder'])
+    requestWeather()
+    requestWeatherPeriodically(60000)
+    if (weatherCache.northPoleWeather && weatherCache.southPoleWeather)
+        dispatch && dispatch(['WhatIsColder'])
 }
 
 export const noMatchHandler: SaluteHandler = async ({ req, res }) => {
