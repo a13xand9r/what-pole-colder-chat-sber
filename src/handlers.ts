@@ -18,6 +18,7 @@ export const runAppHandler: SaluteHandler = ({ req, res }, dispatch) => {
         res.setPronounceText(keyset('404'))
         res.appendBubble(keyset('404'))
         res.setAutoListening(true)
+        res.appendSuggestions(['Помощь', 'Выйти'])
     }
 }
 
@@ -25,6 +26,7 @@ export const noMatchHandler: SaluteHandler = async ({ req, res }) => {
     const keyset = req.i18n(dictionary)
     res.appendBubble(keyset('404'))
     res.setPronounceText(keyset('404'))
+    res.appendSuggestions(['Выйти'])
 }
 
 export const whatIsColderHandler: SaluteHandler = async ({ req, res }) => {
@@ -53,6 +55,7 @@ export const whatIsColderHandler: SaluteHandler = async ({ req, res }) => {
     console.log('responseText', responseText)
     res.setPronounceText(responseText)
     res.appendBubble(responseText)
+    res.appendSuggestions(['Помощь', 'Выйти'])
 }
 
 const poleWeatherInfo = (req: SaluteRequest, res: SaluteResponse, pole: 'Южном' | 'Северном') => {
@@ -75,6 +78,7 @@ const poleWeatherInfo = (req: SaluteRequest, res: SaluteResponse, pole: 'Южн�
         res.appendBubble(responseText)
         res.setPronounceText(responseText)
     }
+    res.appendSuggestions(['Помощь', 'Выйти'])
 }
 
 export const northPoleHandler: SaluteHandler = async ({ req, res }) => {
