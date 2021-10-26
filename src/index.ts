@@ -1,7 +1,7 @@
 import express from 'express'
 import cors from 'cors'
 import { webHookRout } from './routes/webHookRout'
-import { requestWeather, requestWeatherPeriodically } from './api'
+import { requestWeather } from './api'
 require('dotenv').config()
 
 const PORT = process.env.PORT ?? 5000
@@ -14,12 +14,9 @@ app.use(webHookRout)
 
 const startServer = async () => {
   await requestWeather()
-  // await requestWeatherPeriodically(600000)
 
   app.listen(PORT, () => {
     console.log('server started on port ', PORT)
-    // await requestWeather()
-    // await requestWeatherPeriodically(180000)
   })
 
   app.get('/', (_, res) => {

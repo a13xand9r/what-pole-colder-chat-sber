@@ -26,6 +26,14 @@
         {
           "type": "phrase",
           "rule": "погода на северном полюсе"
+        },
+        {
+          "type": "phrase",
+          "rule": "подробнее о северном"
+        },
+        {
+          "type": "phrase",
+          "rule": "на северном"
         }
       ],
       "variables": {}
@@ -43,6 +51,14 @@
         {
           "type": "phrase",
           "rule": "южный полюс"
+        },
+        {
+          "type": "phrase",
+          "rule": "подробнее о южном"
+        },
+        {
+          "type": "phrase",
+          "rule": "на южном"
         }
       ],
       "variables": {}

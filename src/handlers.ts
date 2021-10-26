@@ -1,16 +1,13 @@
 import { SaluteHandler, SaluteRequest, SaluteResponse } from '@salutejs/scenario'
 import * as dictionary from './system.i18n'
-import { getNorthPoleWeather, getSouthPoleWeather, requestWeather, requestWeatherPeriodically, weatherCache } from './api'
+import { getNorthPoleWeather, getSouthPoleWeather, requestWeather, weatherCache } from './api'
 import { Weather } from './types'
 
 let coldPole: Weather & {pole: 'Южном' | 'Северном'}
 let warmPole: Weather & {pole: 'Южном' | 'Северном'}
-let timerId: NodeJS.Timer
 
 export const runAppHandler: SaluteHandler = ({ req, res }, dispatch) => {
-    if (!timerId){
-        timerId = requestWeatherPeriodically(600000)
-    }
+    requestWeather()
     if (weatherCache.northPoleWeather && weatherCache.southPoleWeather){
         dispatch && dispatch(['WhatIsColder'])
     } else {
